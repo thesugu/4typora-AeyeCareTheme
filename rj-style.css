@@ -1,0 +1,415 @@
+/* vietnamese */
+@font-face {
+    font-family: "Monaco";
+    font-style: normal;
+    font-weight: 400;
+    src: local("Monaco"), url("rj-style/fonts/monaco.ttf");
+    /* unicode-range: U+0102-0103, U+1EA0-1EF9, U+20AB; */
+}
+
+@font-face {
+    font-family: "zh";
+    font-style: normal;
+    font-weight: 400;
+    src: local("也字工厂世无双行楷"), url("rj-style/fonts/xk.TTF");
+}
+
+@font-face {
+    font-family: "Z";
+    font-style: normal;
+    font-weight: 400;
+    src: url("rj-style/fonts/仓耳硬核体.ttf");
+}
+
+@font-face {
+    font-family: "c";
+    font-style: normal;
+    font-weight: 400;
+    src: url("rj-style/fonts/你是我的全世界.ttf");
+}
+
+/*  root里定义的是界面颜色、文字颜色等
+    text-color：文字颜色
+    bg-color：背景颜色
+    code-block-bg-color：代码块颜色
+    side-bar-bg-color：文件夹、大纲处的颜色
+    window-border：窗口边界颜色 
+*/
+:root {
+    --text-color: #000000;
+    --bg-color: #FFFFFF;
+    --md-char-color: #724848;
+    --primary-color: #800000;
+    --primary-btn-border-color: #285e8e;
+    --primary-btn-text-color: #fff;
+    --window-border: 1px solid #C7EDCC;
+    /*侧边栏等的边框*/
+    --active-file-bg-color: #eee;
+    /*文件树的背景色*/
+    --active-file-text-color: inherit;
+    --active-file-border-color: #777;
+    /* --code-block-bg-color: #696969; */
+    --side-bar-bg-color: #fdf6f5;
+    --window-border: 1px solid #555;
+    --active-file-bg-color: #fff;
+}
+
+body {
+    /* 绿豆沙 #C7EDCC RGB(199, 237, 204)
+    /* 背景颜色 */
+    background-color: #C7EDCC;
+    /* 透明度 */
+    opacity: 1.0;
+    margin: 0;
+    /* -- */
+    font-family: 'Z', sans-serif;
+    margin: 0;
+}
+
+/* 正文 */
+p {
+    /* margin-top: 0;
+    margin-bottom: 0;
+    margin-left: 3px;
+    margin-right: 3px; */
+    margin: 0;
+}
+
+/* 目录 */
+.md-toc-inner:before {
+    content: "❀";
+}
+
+.md-toc::before {
+    content: "CONTENTS:";
+    display: table;
+    font-size: 16px;
+    font-weight: bold;
+    color: gray;
+}
+
+.md-toc {
+    border: #724848;
+    border-radius: 5px;
+    border-style: dashed;
+    margin: auto;
+}
+
+/*目录的字体定义
+ color：目录字体颜色
+ background-color：背景颜色
+ */
+
+ a {
+    color: #362f97;
+    font-size: 15px;
+    font-family: 'c', sans-serif;
+    margin: 0, 1, 1, 1px;
+}
+
+
+
+
+/* 分割线 */
+hr {
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+    border-top: 3px dashed #abb2bf;
+}
+
+/* 加粗 */
+strong {
+    font-weight: bolder;
+    color: rgb(241, 14, 128);
+}
+
+/* /斜体/ */
+em {
+    color: purple;
+    font-style: italic;
+    font-weight: bold;
+}
+
+/* 下划线 */
+u {
+    color: rgb(39, 39, 235);
+}
+
+/*强调字 ``*/
+code {
+    font-size: 0.9em;
+    color: rgb(255, 0, 0);
+    border: 1px solid gray;
+    border-radius: 0.25rem;
+}
+
+
+
+/* h1 - h6标题 */
+h1 {
+    color: rgb(185, 3, 3);
+    font-size: 42px;
+    font-weight: bold;
+    text-align: center;
+    font-family: 'zh', sans-serif;
+}
+
+h2 {
+    color: rgb(120, 50, 50);
+    font-size: 34px;
+    font-weight: bold;
+    text-align: left;
+    font-family: 'zh';
+}
+
+h3 {
+    color: rgb(155, 80, 80);
+    font-size: 28px;
+    font-weight: bold;
+    text-align: left;
+    font-family: 'zh';
+}
+
+h4 {
+    color: rgb(190, 100, 100);
+    font-size: 24px;
+    font-weight: bold;
+    text-align: left;
+    font-family: 'zh';
+}
+
+h5 {
+    color: rgb(180, 130, 130);
+    font-size: 20px;
+    font-weight: bold;
+    text-align: left;
+    font-family: 'zh';
+}
+
+h6 {
+    color: rgb(120, 130, 130);
+    font-size: 16px;
+    font-weight: bold;
+    text-align: left;
+    font-family: 'zh';
+}
+
+/* 从h2开始自动编号 */
+
+h1 {
+    counter-reset: h2
+}
+
+h2 {
+    counter-reset: h3
+}
+
+h3 {
+    counter-reset: h4
+}
+
+h4 {
+    counter-reset: h5
+}
+
+h5 {
+    counter-reset: h6
+}
+
+/** 标题编号和目录编号 */
+
+#write h2:before {
+    counter-increment: h2;
+    content: counter(h2) ". "
+}
+
+#write h3:before,
+h3.md-focus.md-heading:before /** override the default style for focused headings */ {
+    counter-increment: h3;
+    content: counter(h2) "." counter(h3) ". "
+}
+
+#write h4:before,
+h4.md-focus.md-heading:before {
+    counter-increment: h4;
+    content: counter(h2) "." counter(h3) "." counter(h4) ". "
+}
+
+#write h5:before,
+h5.md-focus.md-heading:before {
+    counter-increment: h5;
+    content: counter(h2) "." counter(h3) "." counter(h4) "." counter(h5) ". "
+}
+
+#write h6:before,
+h6.md-focus.md-heading:before {
+    counter-increment: h6;
+    content: counter(h2) "." counter(h3) "." counter(h4) "." counter(h5) "." counter(h6) ". "
+}
+
+/** override the default style for focused headings */
+#write>h3.md-focus:before,
+#write>h4.md-focus:before,
+#write>h5.md-focus:before,
+#write>h6.md-focus:before,
+h3.md-focus:before,
+h4.md-focus:before,
+h5.md-focus:before,
+h6.md-focus:before {
+    color: inherit;
+    border: inherit;
+    border-radius: inherit;
+    position: inherit;
+    left:initial;
+    float: none;
+    top:initial;
+    font-size: inherit;
+    padding-left: inherit;
+    padding-right: inherit;
+    vertical-align: inherit;
+    font-weight: inherit;
+    line-height: inherit;
+}
+
+ /* 外框 */
+.sidebar-content {
+    counter-reset: h2
+}
+ 
+.outline-h2 {
+    counter-reset: h3
+}
+ 
+.outline-h3 {
+    counter-reset: h4
+}
+ 
+.outline-h4 {
+    counter-reset: h5
+}
+ 
+.outline-h5 {
+    counter-reset: h6
+}
+
+.outline-h2>.outline-item>.outline-label:before {
+    counter-increment: h2;
+    content:  counter(h2) ". "
+}
+ 
+.outline-h3>.outline-item>.outline-label:before {
+    counter-increment: h3;
+    content: counter(h2) "." counter(h3) ". "
+}
+ 
+.outline-h4>.outline-item>.outline-label:before {
+    counter-increment: h4;
+    content: counter(h2) "." counter(h3) "." counter(h4) ". "
+}
+ 
+.outline-h5>.outline-item>.outline-label:before {
+    counter-increment: h5;
+    content: counter(h2) "." counter(h3) "." counter(h4) "." counter(h5) ". "
+}
+ 
+.outline-h6>.outline-item>.outline-label:before {
+    counter-increment: h6;
+    content: counter(h2) "." counter(h3) "." counter(h4) "." counter(h5) "." counter(h6) ". "
+}
+
+ 
+
+
+
+/* 代码块 */
+.md-fences,
+.md-fences:active {
+    background-color: #ddd9d9;
+    border-radius: 6px;
+    padding: 8px 4px 8px 4px !important;
+    margin-top: 15px;
+    margin-bottom: 15px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+    font-family: 'Monaco', sans-serif;
+}
+
+.md-fences .code-tooltip {
+    display: block !important;
+    visibility: hidden;
+    opacity: 0;
+    transition: 0.3s;
+    background-color: #ddd9d9;
+    font-family: 'Monaco', sans-serif;
+}
+
+.md-fences.md-focus .code-tooltip {
+    opacity: 1;
+    visibility: visible;
+    font-family: 'Monaco', sans-serif;
+}
+
+.CodeMirror-lines {
+    padding-left: 4px;
+}
+
+/* 选择文本和游标 */
+.CodeMirror-selected,
+.CodeMirror-selectedtext {
+    background: rgb(196, 216, 84) !important;
+    font-family: 'Monaco', sans-serif;
+}
+
+.CodeMirror div.CodeMirror-cursor {
+    border-left: 1px solid brown;
+    z-index: 3;
+    color: #5078e6;
+    font-family: 'Monaco', sans-serif;
+}
+
+/* 表格 */
+/*单元格*/
+table td {
+    border: 1px solid #584a4a;
+    padding-left: 8px;
+    margin: auto;
+}
+
+/*标题栏*/
+table th {
+    color: blue;
+    border: 2px solid #555;
+    background-color: #ffa9a9;
+    border-style: double;
+    font-weight: bold;
+    text-align: center;
+    margin: auto;
+}
+
+/* 照片 */
+img {
+    border: 1px solid #666666;
+    margin: 0;
+    -webkit-box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+    box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+}
+
+
+/*备注*/
+blockquote {
+    border-radius: 3px;
+    border-left: 5px solid gray;
+    padding: 5px;
+    background-color: #c7ccd6;
+}
+
+
+/* 有序列表 */
+
+ol {
+    list-style-type: lower-roman;
+    padding-left: 10px !important; /* 修改此值以调整左侧缩进距离 */
+}
+
+ul{
+    padding-left: 10px !important; /* 修改此值以调整左侧缩进距离 */
+}
